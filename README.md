@@ -20,6 +20,7 @@ Rename the default php53-fpm pool-www-data config file
 sudo mv /etc/php53/fpm/pool-www-data.conf.example pool-www-data.conf
 ```
 Open pool-www-data.conf file and replace `listen = /var/run/php5-fpm.sock` directive with `Listen 127.0.0.1:9000`
+
 Similarly adjust the `/etc/nginx/sites-available/default` php directive to listen 127.0.0.1:9000 instead of sock file
 
 ```
@@ -29,7 +30,7 @@ location ~ \.php$ {
         #       # With php7.0-cgi alone:
                fastcgi_pass 127.0.0.1:9000;
         #       # With php7.0-fpm:
-        #       fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        #       fastcgi_pass unix:/run/php/php53-fpm.sock;
         }
 ```
 ## Step 4
