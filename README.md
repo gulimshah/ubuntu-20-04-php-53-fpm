@@ -19,8 +19,12 @@ Rename the default php53-fpm pool-www-data config file
 ```
 sudo mv /etc/php53/fpm/pool-www-data.conf.example pool-www-data.conf
 ```
-Open pool-www-data.conf file and replace `listen = /var/run/php5-fpm.sock` directive with `Listen 127.0.0.1:9000`
+Open pool-www-data.conf file and change the following:
+`listen = /var/run/php5-fpm.sock` directive with `Listen 127.0.0.1:9000`
+`prefix = /var/www/html`
+`chdir =/var/www/html`
 
+## Step 4
 Similarly adjust the `/etc/nginx/sites-available/default` php directive to listen 127.0.0.1:9000 instead of sock file
 
 ```
@@ -33,7 +37,7 @@ location ~ \.php$ {
         #       fastcgi_pass unix:/run/php/php53-fpm.sock;
         }
 ```
-## Step 4
+## Step 5
 change the permission of following directories to editable by php53-fpm and Nginx
 ```
 sudo chmod 777 -R /var/www/html
